@@ -105,12 +105,12 @@ function moveExistingDataToSide(){
 //		outPut2.appendChild(devider);
 		
 		//Put horizonatal devider
-		if(i != 0 || i < historyItems.length-1 )
-		{
-			var devider=document.createElement('div');
-			devider.id="horizontal_divider";
-			outPut2.appendChild(devider);
-			
-		}
+//		if(i != 0 || i < historyItems.length-1 )
+//		{
+//			var devider=document.createElement('div');
+//			devider.id="horizontal_divider";
+//			outPut2.appendChild(devider);
+//			
+//		}
 	}	
 }
