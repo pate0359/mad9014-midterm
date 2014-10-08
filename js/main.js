@@ -13,15 +13,6 @@ function init( ){
 	//any user events that you want to add after the page loads (like clicking a button)
 	document.querySelector(".btn").addEventListener("click",fetchData);
 	
-	//Check for templete is supported in browser or not
-	if ('content' in document.createElement('template')) {
-  	// Templates are supported.
-		//alert("Templates are supported.");
-	} else {
-  	// Templates are not supported.
-		//alert("Templates are not supported.");
-	}
-
 }
 
 function fetchData( ){
@@ -29,7 +20,7 @@ function fetchData( ){
 	//our data is already in the other file - data.js
 	
 	nextChild = prepareHTMLElements(data.items[currentItem]);
-	console.log(nextChild);
+	//console.log(nextChild);
 	
 	displayNewDataInMain(nextChild,prevChild);
 	
@@ -37,11 +28,18 @@ function fetchData( ){
 	if(prevChild)
 	{
 		historyItems.unshift(prevChild);
-		moveExistingDataToSide(prevChild);
+		moveExistingDataToSide();
 	}
 	
 	prevChild=nextChild;
 	currentItem++;
+	
+	//disble button after loading all items
+	if(currentItem>=10)
+	{
+		document.querySelector(".btn").className="btnDisable";
+		document.querySelector(".btn").removeEventListener("click", function(e) { e.preventDefault(); }, false);
+	}
 }
 
 function prepareHTMLElements(currentData)
@@ -49,13 +47,13 @@ function prepareHTMLElements(currentData)
 //	console.log(currentData);
 	var templete = document.querySelector('.main-template').cloneNode(true);
 	templete.querySelector(".title").innerHTML=currentData.title;
-	templete.querySelector(".author").innerHTML=currentData.author;
 	templete.querySelector(".date").innerHTML=currentData.date;
+	templete.querySelector(".author").innerHTML='by - '+currentData.author;
 	templete.querySelector(".description").innerHTML=currentData.description;
-	templete.querySelector("a").innerHTML=currentData.link;
-	templete.querySelector("a").href=currentData.link;
 	templete.querySelector("img").src= 'img/'+currentData.image;
-	templete.className="";
+	templete.querySelector("a").innerHTML="More details...";
+	templete.querySelector("a").href=currentData.link;
+	templete.className="main-template-new";
 	
 	return templete;
 }
@@ -69,57 +67,50 @@ function displayNewDataInMain(newData, oldData ){
 	if(currentItem==0)
 	{
 		document.querySelector("#output1").appendChild(newData);
+
 	}else{
 		document.querySelector("#output1").replaceChild(newData,oldData);
 	}
 }
 
-function moveExistingDataToSide(dataToBeRemove){
+function moveExistingDataToSide(){
 	//take the data in the main section output div	and add it to the sidebar output div
-	
 	var outPut2=document.querySelector("#output2");
-//	var last3Items=historyItems;
 	//Maintain History with only 3 items
 	if(historyItems.length>3)
 	{
 		outPut2.removeChild(historyItems[historyItems.length-1]);
 		historyItems.pop();
-		
-//		last3Items=historyItems.splice(0,3); //(historyItems.length-3, historyItems.length);
 	}
 	
-	//Remove all childs
-//	while (outPut2.hasChildNodes()) {
-//    	outPut2.removeChild(node.lastChild);
+//	var test = document.querySelector(".horizontal_divider");
+//	outPut2.removeChild(test);
+//	if(test)
+//	{
+//		for(var i=0; i<test.length; i++)
+//		{
+//			outPut2.removeChild(test[i]);
+//		}
 //	}
 	
-//	outPut2.innerHTML='content'; 
-	
-//	for(var i=historyData.length-1; i<0; i--)
+//	removeClass(ele, "be-still");
+//	outPut2.removeChild(document.querySelector(".horizontal_divider"));
+
 	for(var i=0; i<historyItems.length; i++)
 	{
 		outPut2.appendChild(historyItems[i]);
-	}
-	
-	
-//	if(dataToBeRemove)
-//	{
-//		var outPut2=document.querySelector("#output2");
-//		var items=outPut2.querySelectorAll("#id_template");
-//		
-//		outPut2.appendChild(dataToBeRemove);
-////		outPut2.insertBefore(items[0],dataToBeMoved);
-//		
-//		console.log(items.length);
-//		
-//		if(items.length > 3)
-//		{
-//			outPut2.removeChild(outPut2.getElementsByTagName("div")[0]);
-//			
-////			outPut2.replaceChild(items[1],items[0]);
-////			outPut2.replaceChild(items[2],items[1]);
-////			outPut2.replaceChild(items[3],items[2]);
-//		}
-//		
-//	}
+			
+//		var devider=document.createElement('div');
+//		devider.className="horizontal_divider";
+//		outPut2.appendChild(devider);
+		
+		//Put horizonatal devider
+		if(i != 0 || i < historyItems.length-1 )
+		{
+			var devider=document.createElement('div');
+			devider.id="horizontal_divider";
+			outPut2.appendChild(devider);
+			
+		}
+	}	
 }

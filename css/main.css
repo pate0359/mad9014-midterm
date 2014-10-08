@@ -22,7 +22,9 @@ h1{
 }
 h2{
 	font-size: 2.4rem;
+	color:rgb(75,39,31);
 }
+
 p, li, a{
 	font-family: 'Source Sans Pro', sans-serif;	
 	font-size: 1.6rem;
@@ -32,11 +34,106 @@ p, li, a{
 }
 
 /****************************
+		For Templete
+****************************/
+
+/* horizontal divider */
+#horizontal_divider {
+/*	position: absolute;*/
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+/*.horizontal_divider{
+/*    position:absolute;
+	widows: 100%;
+	top: 2%;
+	bottom: 2%;
+	float: left;
+    border-left:1px solid black;
+} */
+
+/* Hide templete */
+.main-template
+{
+	display: none;
+}
+
+/* new css for templete */
+.main-template-new
+{
+	display: inline-block;
+	color: rgb(102,71,51);
+	
+/*	border-top: 1px  solid black;*/
+}
+
+.title
+{
+	padding-top:1%;
+	font-size: 1.5rem;
+	padding-left: 3%;
+}
+
+.author{
+	width: 80%;
+	padding-left:15%;
+	padding-right: 5%;
+	float: left;
+	clear: right;
+	text-align: right;
+}
+
+.date
+{
+	width: 45%;
+	padding-left:50%;
+	padding-right: 5%;
+	float: left;
+	clear: right;
+	text-align: right;
+}
+
+.description
+{
+	font-family: 'Source Sans Pro', sans-serif;	
+	color:rgb(170,141,102);
+	font-size: 1.0rem;
+	padding-left: 3%;
+}
+
+.templete_href
+{
+	font-family: 'Source Sans Pro', sans-serif;	
+	font-size: 1.0rem;
+	float: right;
+	clear: left;
+	color: blue;
+	padding-top: 0%;
+	display: inline-block;
+	
+/*	display: inline;*/
+/*    position: relative;*/
+  
+}
+
+.templete_image
+{
+	padding-left: 3%;
+/*	position: absolute;*/
+	width: 90%;
+	clear: both;
+/*	padding-top: 3%;*/
+}
+
+/****************************
 		Layout
 ****************************/
 .wrapper{
 	width: 960px;
-	background-color: #e4e4e4;
+/*	background-color: #e4e4e4;*/
+	background-color:rgb(242,238,235);
 	border:1px solid #333;
 	margin:0 auto;
 }
@@ -53,21 +150,26 @@ p, li, a{
 	width: 66%;
 	height: 100%;
 	float: left;
+	background-color:rgb(242,238,235);
+	
+/*	border-right: 1px  solid black;*/
 }
+
 .sidebar{
 	/* use one-third or PHI to set the width of this column */
 	width: 34%;
 	float: right;
+/*	background-color:white;*/
+	background-color:rgb(242,238,235);
+	
 }
+/*.sidebar .main-template-new
+{
+	border-bottom:1px solid black;
+} */
 .footer{
 	border-top:1px solid #333;
 	clear:both;	
-}
-
-/* Hide templete */
-.main-template
-{
-	display: none;
 }
 
 /****************************
@@ -93,6 +195,20 @@ p, li, a{
 	border-radius: 8px;
 	width: 120px;
 	background:#F96;
+	line-height: 2.0rem;
+	font-size: 1.0rem;
+	font-weight: bold;
+	text-align:center;	
+	cursor: pointer;
+}
+
+.btnDisable{
+	display:inline-block;
+	margin: 0.5rem 20px;
+	border:1px solid #333;
+	border-radius: 8px;
+	width: 120px;
+	background:#777;
 	line-height: 2.0rem;
 	font-size: 1.0rem;
 	font-weight: bold;
